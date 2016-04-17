@@ -56,6 +56,22 @@ function nextVideo(){
 	}
 	
 }
+
+function navCheck(){
+  var url = window.location.href;
+  $( "nav li" ).each(function() {
+    $(this).removeClass('active');
+  });
+  if(url == "http://ryandecarlo.com/staging/"){
+    $('nav li.news').addClass('pact');
+
+
+  } else if(url == "http://ryandecarlo.com/staging/work.php"){
+    $('nav li.work').addClass('pact');
+  }
+  $("#sb-wrapper").removeAttr("class");
+}
+
 function goShowReels(vid){
 				
 				$( "#sb-body-inner iframe" ).remove();
@@ -333,21 +349,6 @@ function(e) {
 		}
 	});
 	var s = function() {
-		var url = window.location.href;
-		
-		function navCheck(){
-			$( "nav li" ).each(function() {
-				$(this).removeClass('active');
-			});
-			if(url == "http://ryandecarlo.com/staging/"){
-				$('nav li.news').addClass('pact');
-				
-				
-			} else if(url == "http://ryandecarlo.com/staging/work.php"){
-				$('nav li.work').addClass('pact');
-			}
-			$("#sb-wrapper").removeAttr("class");
-		}
 		
 		function myScroll(){
 			$("#bfContainer").mCustomScrollbar();
