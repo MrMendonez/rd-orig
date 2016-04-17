@@ -26,7 +26,28 @@ function veovidfunc(vid){
 	$("#iframe-container").attr('src', frameUrl);
 	
 }
-function prevVideo(){
+
+function isCurrentPageShowReels() {
+  return $("nav ul li.showreels").hasClass("active");
+}
+
+function prevVideo() {
+  if(isCurrentPageShowReels()) {
+    prevVideoForShowReel();
+  } else {
+    Shadowbox.previous();
+  }
+}
+
+function nextVideo() {
+  if(isCurrentPageShowReels()) {
+    nextVideoForShowReel();
+  } else {
+    Shadowbox.next();
+  }
+}
+
+function prevVideoForShowReel(){
 	
 	if($(".animation-reel").hasClass("active")){
 		veovidfunc(2);
@@ -41,7 +62,7 @@ function prevVideo(){
 	}
 	
 }
-function nextVideo(){
+function nextVideoForShowReel(){
 	
 	if($(".motion-design").hasClass("active")){
 		veovidfunc(2);
@@ -56,6 +77,22 @@ function nextVideo(){
 	}
 	
 }
+
+function navCheck(){
+  var url = window.location.href;
+  $( "nav li" ).each(function() {
+    $(this).removeClass('active');
+  });
+  if(url == "http://ryandecarlo.com/staging/"){
+    $('nav li.news').addClass('pact');
+
+
+  } else if(url == "http://ryandecarlo.com/staging/work.php"){
+    $('nav li.work').addClass('pact');
+  }
+  $("#sb-wrapper").removeAttr("class");
+}
+
 function goShowReels(vid){
 				
 				$( "#sb-body-inner iframe" ).remove();
@@ -333,21 +370,6 @@ function(e) {
 		}
 	});
 	var s = function() {
-		var url = window.location.href;
-		
-		function navCheck(){
-			$( "nav li" ).each(function() {
-				$(this).removeClass('active');
-			});
-			if(url == "http://ryandecarlo.com/staging/"){
-				$('nav li.news').addClass('pact');
-				
-				
-			} else if(url == "http://ryandecarlo.com/staging/work.php"){
-				$('nav li.work').addClass('pact');
-			}
-			$("#sb-wrapper").removeAttr("class");
-		}
 		
 		function myScroll(){
 			$("#bfContainer").mCustomScrollbar();
