@@ -26,7 +26,28 @@ function veovidfunc(vid){
 	$("#iframe-container").attr('src', frameUrl);
 	
 }
-function prevVideo(){
+
+function isCurrentPageShowReels() {
+  return $("nav ul li.showreels").hasClass("active");
+}
+
+function prevVideo() {
+  if(isCurrentPageShowReels()) {
+    prevVideoForShowReel();
+  } else {
+    Shadowbox.previous();
+  }
+}
+
+function nextVideo() {
+  if(isCurrentPageShowReels()) {
+    nextVideoForShowReel();
+  } else {
+    Shadowbox.next();
+  }
+}
+
+function prevVideoForShowReel(){
 	
 	if($(".animation-reel").hasClass("active")){
 		veovidfunc(2);
@@ -41,7 +62,7 @@ function prevVideo(){
 	}
 	
 }
-function nextVideo(){
+function nextVideoForShowReel(){
 	
 	if($(".motion-design").hasClass("active")){
 		veovidfunc(2);
